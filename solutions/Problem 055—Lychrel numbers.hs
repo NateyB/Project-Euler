@@ -9,9 +9,9 @@ isLychrel int = performCount 1 (nextIteration int)
         nextIteration n = n + ((read $ reverse $ show n) :: Integer)
         performCount 50 _ = True
         performCount n int
-                    | (isPalindrome int) = False
+                    | isPalindrome int = False
                     | otherwise = performCount (n + 1) (nextIteration int)
 
-main = putStrLn $ show $ solution
+main = print solution
     where
         solution = length $ filter isLychrel [1..10000]

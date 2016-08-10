@@ -8,6 +8,6 @@ movements at any of the 40 possible moments, and the rest will be determined.
 -}
 
 fac n = product [1..n]
-choose n q = (fac n) `div` (fac(q) * fac (n - q))
+choose n q = fac n `div` (fac q * fac (n - q))
 
-main = putStrLn $ show $ choose 40 20
+main = print $ choose 40 20

@@ -167,15 +167,15 @@ didn't derive the solution in a more elegant manner—but hopefully reading the
 forum comments will explain to me why this worked.
 -}
 
-import Data.List
-import Data.Numbers.Primes
+import           Data.List
+import           Data.Numbers.Primes
 
 -- Where primes is a list of powers of each prime (the actual value of the prime is irrelevant)
 numSolutionsGivenPrimes :: [Int] -> Int
 numSolutionsGivenPrimes              [] = 1 -- Not technically true, but meh.
-numSolutionsGivenPrimes (pow:remainder) = pow*(product (map ((1+) . (2*)) remainder)) + (numSolutionsGivenPrimes remainder)
+numSolutionsGivenPrimes (pow:remainder) = pow * product (map ((1+) . (2*)) remainder) + numSolutionsGivenPrimes remainder
 
-main = putStrLn $ show $ result
+main = print result
     where
-        result = head $ filter ((> exceedsUnique) . numSolutionsGivenPrimes . (map (length)) . group . primeFactors) [1..]
+        result = head $ filter ((> exceedsUnique) . numSolutionsGivenPrimes . map length . group . primeFactors) [1..]
         exceedsUnique = 1000

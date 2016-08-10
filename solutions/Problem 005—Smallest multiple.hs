@@ -29,4 +29,4 @@ arbitrary set of numbers.
 -}
 
 -- Wow, I had no idea Prelude included an lcm function. Research before you act!
-main = putStrLn $ show $ foldl1 lcm [2..20]
+main = print $ foldl1 lcm [2..20]

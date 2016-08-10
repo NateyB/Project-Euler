@@ -3,15 +3,15 @@ grid = [08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08,49,49,99,40,
 -- Fortunately for me, I'm a lazy programmer, so I only need to check each
 -- of the indices in four possible directions ;)
 indexSum :: [Int] -> Int -> Int;
-indexSum grid n = maximum [product $ genNext ((+) 1),
-                     product $ genNext ((+) 20),
-                     product $ genNext ((+) 21),
-                     product $ genNext ((+) 19)]
-        where  genNext func = map (getNext) $ take 4 (iterate func n);
+indexSum grid n = maximum [product $ genNext (1 +),
+                     product $ genNext (20 +),
+                     product $ genNext (21 +),
+                     product $ genNext (19 + )]
+        where  genNext func = getNext <$> take 4 (iterate func n);
                getNext index
-                            | index < (length grid) = grid !! index
+                            | index < length grid = grid !! index
                             | otherwise = 0
 
-main = putStrLn $ show $ result
+main = print result
     where
         result = maximum $ map (indexSum grid) [0..(length grid)]
